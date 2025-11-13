@@ -5,21 +5,92 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Bypass 168 — Blog</title>
 
+<!-- SEO META -->
+<meta name="description" content="The official blog of The Bypass 168. Night-highway vibes, updates, stories, sneak peeks, and behind-the-scenes as we prepare to reopen.">
+<meta property="og:title" content="The Bypass 168 — Blog" />
+<meta property="og:description" content="Night-highway vibes, updates, stories, and behind-the-scenes from The Bypass 168." />
+<meta property="og:image" content="https://thebypass168.com/default-blog-preview.jpg" />
+<meta property="og:type" content="website" />
+
 <style>
     body {
         margin: 0;
         background: #0a0a0a;
         font-family: Arial, sans-serif;
         color: #fff;
+        overflow-x: hidden;
     }
 
+    /* ---------- NAVBAR ---------- */
+    nav {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        background: rgba(0,0,0,0.65);
+        backdrop-filter: blur(6px);
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding: 15px 0;
+        z-index: 100;
+        border-bottom: 1px solid rgba(41,217,213,0.15);
+    }
+
+    nav a {
+        color: #b8ffff;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.05rem;
+        position: relative;
+        transition: 0.2s;
+    }
+
+    nav a:hover {
+        color: #29d9d5;
+    }
+
+    nav a.active::after {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: #29d9d5;
+        box-shadow: 0 0 8px #29d9d5;
+        border-radius: 2px;
+    }
+
+    /* ---------- MOTION GLOW BACKGROUND ---------- */
+    body::before {
+        content: "";
+        position: fixed;
+        top: -200px;
+        left: -200px;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(41,217,213,0.07) 0%, transparent 70%),
+                    radial-gradient(circle at 20% 80%, rgba(255,196,0,0.05) 0%, transparent 60%),
+                    radial-gradient(circle at 80% 30%, rgba(255,60,48,0.07) 0%, transparent 60%);
+        animation: drift 18s linear infinite;
+        z-index: -1;
+    }
+
+    @keyframes drift {
+        0% { transform: translate(0,0) rotate(0deg); }
+        50% { transform: translate(-100px, -60px) rotate(45deg); }
+        100% { transform: translate(0,0) rotate(0deg); }
+    }
+
+    /* ---------- HEADER ---------- */
     header {
-        padding: 40px 20px;
+        padding: 45px 20px;
         text-align: center;
-        background: linear-gradient(90deg, #ff2a6d, #29d9d5);
-        color: #000;
-        font-size: 2rem;
-        font-weight: 800;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #29d9d5;
+        text-shadow: 0 0 12px #29d9d5;
+        letter-spacing: 1px;
     }
 
     .intro {
@@ -29,8 +100,10 @@
         max-width: 700px;
         margin: auto;
         line-height: 1.5;
+        opacity: 0.85;
     }
 
+    /* ---------- POST LIST ---------- */
     .post-list {
         max-width: 850px;
         margin: 50px auto;
@@ -38,72 +111,105 @@
     }
 
     .post-card {
-        background: rgba(255, 255, 255, 0.08);
-        padding: 22px;
-        margin-bottom: 25px;
-        border-left: 4px solid #ff2a6d;
+        background: rgba(255,255,255,0.04);
+        padding: 24px;
+        margin-bottom: 28px;
+        border-left: 4px solid #29d9d5;
         border-radius: 6px;
-        transition: 0.2s;
         cursor: pointer;
+        transition: 0.25s;
+        animation: fadeIn 0.8s ease both;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
     .post-card:hover {
+        background: rgba(41,217,213,0.08);
+        box-shadow: 0 0 14px rgba(41,217,213,0.45);
         transform: translateX(6px);
-        background: rgba(255, 255, 255, 0.12);
     }
 
     .post-card h2 {
-        margin: 0;
-        margin-bottom: 10px;
+        margin: 0 0 8px 0;
         color: #29d9d5;
-        font-size: 1.4rem;
+        font-size: 1.5rem;
+        position: relative;
+        padding-bottom: 6px;
+    }
+
+    .post-card h2::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 70px;
+        height: 3px;
+        background: linear-gradient(90deg, #29d9d5, #f5c400, #ff3b30);
+        border-radius: 2px;
+        animation: streak 3s linear infinite;
+    }
+
+    @keyframes streak {
+        0% { background-position: 0%; }
+        100% { background-position: 200%; }
     }
 
     .post-card p {
         margin: 0;
-        opacity: 0.75;
-        line-height: 1.4;
+        opacity: 0.78;
+        line-height: 1.45;
     }
 
-    footer {
-        text-align: center;
-        padding: 40px;
-        opacity: 0.6;
-        font-size: 0.9rem;
-    }
-
-    /* Post page */
+    /* ---------- POST PAGE ---------- */
     #post-content {
         max-width: 850px;
         margin: 40px auto;
         padding: 20px;
         display: none;
+        animation: fadeIn 0.8s ease both;
+    }
+
+    #post-content h1 {
+        color: #29d9d5;
+        text-shadow: 0 0 10px #29d9d5;
+        margin-bottom: 20px;
     }
 
     #back-btn {
         display: inline-block;
-        margin-top: 20px;
+        margin-top: 25px;
         padding: 10px 18px;
-        background: #ff2a6d;
+        background: #29d9d5;
         color: #000;
-        border-radius: 5px;
+        border-radius: 6px;
         text-decoration: none;
         font-weight: bold;
+        box-shadow: 0 0 8px #29d9d5;
     }
 </style>
-
 </head>
 
 <body>
 
+<!-- NAVBAR -->
+<nav>
+    <a href="https://thebypass168.com">Home</a>
+    <a href="https://thebypass168.com/menu">Menu</a>
+    <a href="https://thebypass168.com/apply">Apply</a>
+    <a class="active">Blog</a>
+</nav>
+
 <header>The Bypass 168 Blog</header>
 
 <div class="intro">
-    Your official inside lane — updates, sneak peeks, progress reports, menu drops, 
-    and everything happening as we get ready to reopen Chesapeake’s most anticipated restaurant.
+    Night-highway energy. Turquoise neon. Hazard yellow in the distance.  
+    This is your inside lane to updates, stories, progress, and sneak peeks as we approach reopening.
 </div>
 
-<!-- LIST OF POSTS -->
+<!-- POST LIST -->
 <div class="post-list" id="post-list"></div>
 
 <!-- FULL POST PAGE -->
@@ -111,24 +217,27 @@
 
 <footer>© The Bypass 168</footer>
 
-
 <script>
 async function loadPosts() {
-    const posts = [
-        "welcome.md"
-    ];
+    const files = await fetch("posts/")
+        .then(r => r.text());
+
+    const matches = [...files.matchAll(/>([^<]+\.md)</g)];
+    const posts = matches.map(m => m[1]);
 
     const postList = document.getElementById("post-list");
 
     posts.forEach(filename => {
         fetch(`posts/${filename}`)
-            .then(response => response.text())
+            .then(r => r.text())
             .then(text => {
-                const title = text.split("\n")[0].replace("#", "").trim();
-                const preview = text.split("\n")[2] || "";
+                const lines = text.split("\n");
+                const title = lines[0].replace("#", "").trim();
+                const preview = lines[2] || "";
 
                 const card = document.createElement("div");
                 card.className = "post-card";
+
                 card.innerHTML = `
                     <h2>${title}</h2>
                     <p>${preview}</p>
@@ -140,18 +249,17 @@ async function loadPosts() {
 }
 
 async function openPost(filename) {
-    const postList = document.getElementById("post-list");
+    document.getElementById("post-list").style.display = "none";
     const postContent = document.getElementById("post-content");
+    postContent.style.display = "block";
 
-    const md = await fetch(`posts/${filename}`).then(r => r.text());
+    let md = await fetch(`posts/${filename}`).then(r => r.text());
 
-    const html = md
+    let html = md
         .replace(/^# (.*$)/gim, "<h1>$1</h1>")
         .replace(/\*\*(.*?)\*\*/gim, "<strong>$1</strong>")
         .replace(/\n/gim, "<br>");
 
-    postList.style.display = "none";
-    postContent.style.display = "block";
     postContent.innerHTML = html + `<br><br><a id="back-btn" href="#" onclick="goBack()">← Back</a>`;
 }
 
