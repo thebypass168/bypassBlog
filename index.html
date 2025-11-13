@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>The Bypass 168 — Official Blog</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Bypass 168 — Blog</title>
+
 <style>
     body {
         margin: 0;
@@ -23,40 +24,74 @@
 
     .intro {
         padding: 25px;
-        font-size: 1.2rem;
-        line-height: 1.5;
+        font-size: 1.15rem;
         text-align: center;
         max-width: 700px;
         margin: auto;
+        line-height: 1.5;
     }
 
     .post-list {
-        max-width: 800px;
-        margin: 40px auto;
+        max-width: 850px;
+        margin: 50px auto;
         padding: 0 20px;
     }
 
     .post-card {
         background: rgba(255, 255, 255, 0.08);
-        padding: 20px;
+        padding: 22px;
         margin-bottom: 25px;
         border-left: 4px solid #ff2a6d;
         border-radius: 6px;
+        transition: 0.2s;
+        cursor: pointer;
+    }
+
+    .post-card:hover {
+        transform: translateX(6px);
+        background: rgba(255, 255, 255, 0.12);
     }
 
     .post-card h2 {
-        margin-top: 0;
+        margin: 0;
+        margin-bottom: 10px;
         color: #29d9d5;
+        font-size: 1.4rem;
+    }
+
+    .post-card p {
+        margin: 0;
+        opacity: 0.75;
+        line-height: 1.4;
     }
 
     footer {
         text-align: center;
         padding: 40px;
-        margin-top: 40px;
         opacity: 0.6;
         font-size: 0.9rem;
     }
+
+    /* Post page */
+    #post-content {
+        max-width: 850px;
+        margin: 40px auto;
+        padding: 20px;
+        display: none;
+    }
+
+    #back-btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 18px;
+        background: #ff2a6d;
+        color: #000;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+    }
 </style>
+
 </head>
 
 <body>
@@ -64,14 +99,69 @@
 <header>The Bypass 168 Blog</header>
 
 <div class="intro">
-    Welcome to the official blog of <strong>The Bypass 168</strong> — your inside lane for updates, behind-the-scenes stories, new menu drops, opening progress, and everything happening at Chesapeake’s most anticipated refresh.
+    Your official inside lane — updates, sneak peeks, progress reports, menu drops, 
+    and everything happening as we get ready to reopen Chesapeake’s most anticipated restaurant.
 </div>
 
-<div class="post-list">
-    <!-- POSTS WILL APPEAR HERE -->
-</div>
+<!-- LIST OF POSTS -->
+<div class="post-list" id="post-list"></div>
 
-<footer>© The Bypass 168 — All Rights Reserved</footer>
+<!-- FULL POST PAGE -->
+<div id="post-content"></div>
+
+<footer>© The Bypass 168</footer>
+
+
+<script>
+async function loadPosts() {
+    const posts = [
+        "welcome.md"
+    ];
+
+    const postList = document.getElementById("post-list");
+
+    posts.forEach(filename => {
+        fetch(`posts/${filename}`)
+            .then(response => response.text())
+            .then(text => {
+                const title = text.split("\n")[0].replace("#", "").trim();
+                const preview = text.split("\n")[2] || "";
+
+                const card = document.createElement("div");
+                card.className = "post-card";
+                card.innerHTML = `
+                    <h2>${title}</h2>
+                    <p>${preview}</p>
+                `;
+                card.onclick = () => openPost(filename);
+                postList.appendChild(card);
+            });
+    });
+}
+
+async function openPost(filename) {
+    const postList = document.getElementById("post-list");
+    const postContent = document.getElementById("post-content");
+
+    const md = await fetch(`posts/${filename}`).then(r => r.text());
+
+    const html = md
+        .replace(/^# (.*$)/gim, "<h1>$1</h1>")
+        .replace(/\*\*(.*?)\*\*/gim, "<strong>$1</strong>")
+        .replace(/\n/gim, "<br>");
+
+    postList.style.display = "none";
+    postContent.style.display = "block";
+    postContent.innerHTML = html + `<br><br><a id="back-btn" href="#" onclick="goBack()">← Back</a>`;
+}
+
+function goBack() {
+    document.getElementById("post-content").style.display = "none";
+    document.getElementById("post-list").style.display = "block";
+}
+
+loadPosts();
+</script>
 
 </body>
 </html>
