@@ -260,7 +260,32 @@ async function openPost(filename) {
         .replace(/\*\*(.*?)\*\*/gim, "<strong>$1</strong>")
         .replace(/\n/gim, "<br>");
 
-    postContent.innerHTML = html + `<br><br><a id="back-btn" href="#" onclick="goBack()">← Back</a>`;
+    postContent.innerHTML = `
+    ${html}
+    <div id="comments"></div>
+    <br><br>
+    <a id="back-btn" href="#" onclick="goBack()">← Back</a>
+`;
+
+// Load Giscus
+const comments = document.getElementById("comments");
+comments.innerHTML = `
+    <script src="https://giscus.app/client.js"
+        data-repo="thebypass168/bypassBlog"
+        data-repo-id=""
+        data-category="Blog Comments"
+        data-category-id=""
+        data-mapping="title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="transparent_dark"
+        crossorigin="anonymous"
+        async>
+    </script>
+`;
+
 }
 
 function goBack() {
