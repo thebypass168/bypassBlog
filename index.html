@@ -243,24 +243,27 @@ async function openPost(filename) {
         <a id="back-btn" href="#" onclick="goBack()">← Back</a>
     `;
 
-    // Inject Giscus properly
-    document.getElementById("comments").innerHTML = `
-        <script src="https://giscus.app/client.js"
-            data-repo="thebypass168/bypassBlog"
-            data-repo-id="R_kgDOQUnKGQ"
-            data-category="General"
-            data-category-id="DIC_kwDOQUnKGc4Cxvd5"
-            data-mapping="pathname"
-            data-strict="0"
-            data-reactions-enabled="1"
-            data-emit-metadata="0"
-            data-input-position="bottom"
-            data-theme="transparent_dark"
-            data-lang="en"
-            crossorigin="anonymous"
-            async>
-        </script>
-    `;
+  // Load Giscus PROPERLY (scripts must be created, not innerHTML)
+const commentsDiv = document.getElementById("comments");
+
+const giscusScript = document.createElement("script");
+giscusScript.src = "https://giscus.app/client.js";
+giscusScript.setAttribute("data-repo", "thebypass168/bypassBlog");
+giscusScript.setAttribute("data-repo-id", "R_kgDOQUnKGQ");
+giscusScript.setAttribute("data-category", "General");
+giscusScript.setAttribute("data-category-id", "DIC_kwDOQUnKGc4Cxvd5");
+giscusScript.setAttribute("data-mapping", "pathname");
+giscusScript.setAttribute("data-strict", "0");
+giscusScript.setAttribute("data-reactions-enabled", "1");
+giscusScript.setAttribute("data-emit-metadata", "0");
+giscusScript.setAttribute("data-input-position", "bottom");
+giscusScript.setAttribute("data-theme", "transparent_dark");
+giscusScript.setAttribute("data-lang", "en");
+giscusScript.setAttribute("crossorigin", "anonymous");
+giscusScript.async = true;
+
+commentsDiv.appendChild(giscusScript);
+
 }
 
 function goBack() {
