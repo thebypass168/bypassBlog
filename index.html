@@ -1,278 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Bypass 168 — Blog</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Bypass 168 — Blog</title>
 
-<!-- SEO META -->
-<meta name="description" content="The official blog of The Bypass 168. Night-highway vibes, updates, stories, sneak peeks, and behind-the-scenes as we prepare to reopen.">
-<meta property="og:title" content="The Bypass 168 — Blog" />
-<meta property="og:description" content="Night-highway vibes, updates, stories, and behind-the-scenes from The Bypass 168." />
-<meta property="og:image" content="https://thebypass168.com/default-blog-preview.jpg" />
-<meta property="og:type" content="website" />
+    <!-- SEO META -->
+    <meta
+        name="description"
+        content="The official blog of The Bypass 168. Night-highway vibes, updates, stories, sneak peeks, and behind-the-scenes as we prepare to reopen."
+    />
+    <meta property="og:title" content="The Bypass 168 — Blog" />
+    <meta
+        property="og:description"
+        content="Night-highway vibes, updates, stories, and behind-the-scenes from The Bypass 168."
+    />
+    <meta
+        property="og:image"
+        content="https://thebypass168.com/default-blog-preview.jpg"
+    />
+    <meta property="og:type" content="website" />
 
-<style>
-    body {
-        margin: 0;
-        background: #0a0a0a;
-        font-family: Arial, sans-serif;
-        color: #fff;
-        overflow-x: hidden;
-    }
+    <style>
+        body {
+            margin: 0;
+            background: #0a0a0a;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+        }
 
-    /* NAVBAR */
-    nav {
-        position: sticky;
-        top: 0;
-        width: 100%;
-        background: rgba(0,0,0,0.65);
-        backdrop-filter: blur(6px);
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        padding: 15px 0;
-        z-index: 100;
-        border-bottom: 1px solid rgba(41,217,213,0.15);
-    }
+        /* NAVBAR */
+        nav {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(6px);
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 15px 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(41, 217, 213, 0.15);
+        }
 
-    nav a {
-        color: #b8ffff;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1.05rem;
-        position: relative;
-        transition: 0.2s;
-    }
+        nav a {
+            color: #b8ffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            position: relative;
+            transition: 0.2s;
+        }
 
-    nav a:hover { color: #29d9d5; }
+        nav a:hover {
+            color: #29d9d5;
+        }
 
-    nav a.active::after {
-        content: "";
-        position: absolute;
-        bottom: -6px;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background: #29d9d5;
-        box-shadow: 0 0 8px #29d9d5;
-        border-radius: 2px;
-    }
+        nav a.active::after {
+            content: "";
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #29d9d5;
+            box-shadow: 0 0 8px #29d9d5;
+            border-radius: 2px;
+        }
 
-    /* GLOW BACKGROUND */
-    body::before {
-        content: "";
-        position: fixed;
-        top: -200px;
-        left: -200px;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(41,217,213,0.07) 0%, transparent 70%),
-                    radial-gradient(circle at 20% 80%, rgba(255,196,0,0.05) 0%, transparent 60%),
-                    radial-gradient(circle at 80% 30%, rgba(255,60,48,0.07) 0%, transparent 60%);
-        animation: drift 18s linear infinite;
-        z-index: -1;
-    }
+        /* GLOW BACKGROUND */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -200px;
+            left: -200px;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(41, 217, 213, 0.07) 0%,
+                    transparent 70%
+                ),
+                radial-gradient(
+                    circle at 20% 80%,
+                    rgba(255, 196, 0, 0.05) 0%,
+                    transparent 60%
+                ),
+                radial-gradient(
+                    circle at 80% 30%,
+                    rgba(255, 60, 48, 0.07) 0%,
+                    transparent 60%
+                );
+            animation: drift 18s linear infinite;
+            z-index: -1;
+        }
 
-    @keyframes drift {
-        0% { transform: translate(0,0) rotate(0deg); }
-        50% { transform: translate(-100px, -60px) rotate(45deg); }
-        100% { transform: translate(0,0) rotate(0deg); }
-    }
+        @keyframes drift {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            50% {
+                transform: translate(-100px, -60px) rotate(45deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+        }
 
-    /* HEADER */
-    header {
-        padding: 45px 20px;
-        text-align: center;
-        font-size: 2.5rem;
-        font-weight: 900;
-        color: #29d9d5;
-        text-shadow: 0 0 12px #29d9d5;
-    }
+        /* HEADER */
+        header {
+            padding: 45px 20px 10px 20px;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #29d9d5;
+            text-shadow: 0 0 12px #29d9d5;
+        }
 
-    .intro {
-        padding: 25px;
-        font-size: 1.15rem;
-        text-align: center;
-        max-width: 700px;
-        margin: auto;
-        opacity: 0.85;
-        line-height: 1.5;
-    }
+        .intro {
+            padding: 10px 25px 30px 25px;
+            font-size: 1.05rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
 
-    /* POST LIST */
-    .post-list {
-        max-width: 850px;
-        margin: 50px auto;
-        padding: 0 20px;
-    }
+        /* POST LIST */
+        .post-list {
+            max-width: 850px;
+            margin: 30px auto 60px auto;
+            padding: 0 20px;
+        }
 
-    .post-card {
-        background: rgba(255,255,255,0.04);
-        padding: 24px;
-        margin-bottom: 28px;
-        border-left: 4px solid #29d9d5;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: 0.25s;
-        animation: fadeIn 0.8s ease both;
-    }
+        .post-card {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 20px 22px;
+            margin-bottom: 24px;
+            border-left: 4px solid #29d9d5;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.25s;
+            animation: fadeIn 0.6s ease both;
+        }
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(12px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .post-card:hover {
-        background: rgba(41,217,213,0.08);
-        box-shadow: 0 0 14px rgba(41,217,213,0.45);
-        transform: translateX(6px);
-    }
+        .post-card:hover {
+            background: rgba(41, 217, 213, 0.08);
+            box-shadow: 0 0 14px rgba(41, 217, 213, 0.45);
+            transform: translateX(6px);
+        }
 
-    .post-card h2 {
-        color: #29d9d5;
-        margin: 0 0 8px 0;
-        font-size: 1.5rem;
-    }
+        .post-card h2 {
+            color: #29d9d5;
+            margin: 0 0 8px 0;
+            font-size: 1.4rem;
+        }
 
-    /* POST PAGE */
-    #post-content {
-        max-width: 850px;
-        margin: 40px auto;
-        padding: 20px;
-        display: none;
-        animation: fadeIn 0.8s ease both;
-    }
+        .post-card p {
+            margin: 0;
+            font-size: 0.98rem;
+            opacity: 0.9;
+        }
 
-    #post-content h1 {
-        color: #29d9d5;
-        text-shadow: 0 0 10px #29d9d5;
-        margin-bottom: 20px;
-    }
+        /* POST PAGE */
+        #post-content {
+            max-width: 850px;
+            margin: 30px auto 60px auto;
+            padding: 0 20px 40px 20px;
+            display: none;
+            animation: fadeIn 0.6s ease both;
+        }
 
-    #back-btn {
-        display: inline-block;
-        margin-top: 25px;
-        padding: 10px 18px;
-        background: #29d9d5;
-        color: #000;
-        border-radius: 6px;
-        font-weight: bold;
-        text-decoration: none;
-    }
-</style>
+        #post-content h1 {
+            color: #29d9d5;
+            text-shadow: 0 0 10px #29d9d5;
+            margin-bottom: 16px;
+            font-size: 2rem;
+        }
+
+        #post-content p {
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        #comments {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(41, 217, 213, 0.35);
+        }
+
+        #comments-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #b8ffff;
+            font-size: 1rem;
+        }
+
+        #back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 9px 16px;
+            background: #29d9d5;
+            color: #000;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        #back-btn:hover {
+            background: #1fb5b2;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 10px 30px 10px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+    </style>
 </head>
-
 <body>
+    <!-- NAVBAR -->
+    <nav>
+        <a href="https://thebypass168.com">Home</a>
+        <a href="https://thebypass168.com/menu">Menu</a>
+        <a href="https://thebypass168.com/apply">Apply</a>
+        <a class="active">Blog</a>
+    </nav>
 
-<!-- NAVBAR -->
-<nav>
-    <a href="https://thebypass168.com">Home</a>
-    <a href="https://thebypass168.com/menu">Menu</a>
-    <a href="https://thebypass168.com/apply">Apply</a>
-    <a class="active">Blog</a>
-</nav>
+    <header>The Bypass 168 Blog</header>
 
-<header>The Bypass 168 Blog</header>
+    <div class="intro">
+        Night-highway energy. Turquoise neon. Hazard lights in the distance.<br />
+        Updates, stories, progress, and sneak peeks as we get The Bypass 168
+        ready to roll again.
+    </div>
 
-<div class="intro">
-    Night-highway energy. Turquoise neon. Hazard yellow in the distance.<br>
-    Updates, stories, progress, and sneak peeks as we approach reopening.
-</div>
+    <div class="post-list" id="post-list"></div>
 
-<div class="post-list" id="post-list"></div>
+    <div id="post-content"></div>
 
-<div id="post-content"></div>
+    <footer>© The Bypass 168</footer>
 
-<footer>© The Bypass 168</footer>
+    <script>
+        async function loadPosts() {
+            // Fetch the HTML directory listing for /posts/
+            const filesHtml = await fetch("posts/").then((r) => r.text());
 
-<script>
-async function loadPosts() {
-    const files = await fetch("posts/").then(r => r.text());
-    const matches = [...files.matchAll(/>([^<]+\.md)</g)];
-    const posts = matches.map(m => m[1]);
+            // Extract *.md filenames from the directory listing
+            const matches = [...filesHtml.matchAll(/>([^<]+\.md)</g)];
+            const posts = matches.map((m) => m[1]);
 
-    const postList = document.getElementById("post-list");
+            const postList = document.getElementById("post-list");
 
-    posts.forEach(filename => {
-        fetch(`posts/${filename}`)
-            .then(r => r.text())
-            .then(text => {
-                const lines = text.split("\n");
-                const metadata = {};
+            posts.forEach((filename) => {
+                fetch(`posts/${filename}`)
+                    .then((r) => r.text())
+                    .then((text) => {
+                        const lines = text.split("\n");
+                        const metadata = {};
 
-                lines.forEach(line => {
-                    if (line.includes(":")) {
-                        const [key, value] = line.split(":").map(s => s.trim());
-                        metadata[key] = value;
-                    }
-                });
+                        // Very simple "key: value" metadata parsing if present
+                        lines.forEach((line) => {
+                            if (line.includes(":")) {
+                                const parts = line.split(":");
+                                if (parts.length >= 2) {
+                                    const key = parts[0].trim();
+                                    const value = parts.slice(1).join(":").trim();
+                                    metadata[key] = value;
+                                }
+                            }
+                        });
 
-                const publishDate = metadata.publish ? new Date(metadata.publish) : new Date();
-                if (publishDate > new Date()) return;
+                        // Hide future posts based on "publish: YYYY-MM-DD"
+                        const publishDate = metadata.publish
+                            ? new Date(metadata.publish)
+                            : new Date();
+                        if (publishDate > new Date()) return;
 
-                const title = lines[0].replace("#", "").trim();
-                const preview = lines[2] || "";
+                        const title = lines[0]
+                            .replace("#", "")
+                            .trim();
+                        const preview = lines[2] || "";
 
-                const card = document.createElement("div");
-                card.className = "post-card";
-                card.innerHTML = `<h2>${title}</h2><p>${preview}</p>`;
-                card.onclick = () => openPost(filename);
+                        const card = document.createElement("div");
+                        card.className = "post-card";
+                        card.innerHTML = `<h2>${title}</h2><p>${preview}</p>`;
+                        card.onclick = () => openPost(filename);
 
-                postList.appendChild(card);
+                        postList.appendChild(card);
+                    });
             });
-    });
-}
+        }
 
-async function openPost(filename) {
-    document.getElementById("post-list").style.display = "none";
+        async function openPost(filename) {
+            // Hide list, show post view
+            document.getElementById("post-list").style.display = "none";
 
-    const postContent = document.getElementById("post-content");
-    postContent.style.display = "block";
+            const postContent = document.getElementById("post-content");
+            postContent.style.display = "block";
 
-    let md = await fetch(`posts/${filename}`).then(r => r.text());
-    let html = md
-        .replace(/^# (.*$)/gim, "<h1>$1</h1>")
-        .replace(/\*\*(.*?)\*\*/gim, "<strong>$1</strong>")
-        .replace(/\n/gim, "<br>");
+            // Get markdown for this post
+            const md = await fetch(`posts/${filename}`).then((r) => r.text());
 
-    postContent.innerHTML = `
-        ${html}
-        <div id="comments"></div>
-        <br><br>
-        <a id="back-btn" href="#" onclick="goBack()">← Back</a>
-    `;
+            // VERY lightweight markdown-to-HTML
+            let html = md
+                .replace(/^# (.*$)/gim, "<h1>$1</h1>")
+                .replace(/\*\*(.*?)\*\*/gim, "<strong>$1</strong>")
+                .replace(/\n/gim, "<br>");
 
-  // Load Giscus PROPERLY (scripts must be created, not innerHTML)
-const commentsDiv = document.getElementById("comments");
+            // Render post + comments container + back button
+            postContent.innerHTML = `
+                ${html}
+                <div id="comments">
+                    <div id="comments-title">💬 Comments</div>
+                </div>
+                <br><br>
+                <button id="back-btn" onclick="goBack()">← Back</button>
+            `;
 
-const giscusScript = document.createElement("script");
-giscusScript.src = "https://giscus.app/client.js";
-giscusScript.setAttribute("data-repo", "thebypass168/bypassBlog");
-giscusScript.setAttribute("data-repo-id", "R_kgDOQUnKGQ");
-giscusScript.setAttribute("data-category", "General");
-giscusScript.setAttribute("data-category-id", "DIC_kwDOQUnKGc4Cxvd5");
-giscusScript.setAttribute("data-mapping", "pathname");
-giscusScript.setAttribute("data-strict", "0");
-giscusScript.setAttribute("data-reactions-enabled", "1");
-giscusScript.setAttribute("data-emit-metadata", "0");
-giscusScript.setAttribute("data-input-position", "bottom");
-giscusScript.setAttribute("data-theme", "transparent_dark");
-giscusScript.setAttribute("data-lang", "en");
-giscusScript.setAttribute("crossorigin", "anonymous");
-giscusScript.async = true;
+            // Load Giscus AFTER the post renders
+            const commentsDiv = document.getElementById("comments");
+            commentsDiv.innerHTML =
+                '<div id="comments-title">💬 Comments</div>'; // keep title, clear old widget
 
-commentsDiv.appendChild(giscusScript);
+            const giscusScript = document.createElement("script");
+            giscusScript.src = "https://giscus.app/client.js";
+            giscusScript.setAttribute("data-repo", "thebypass168/bypassBlog");
+            giscusScript.setAttribute("data-repo-id", "R_kgDOQUnKGQ");
+            giscusScript.setAttribute("data-category", "General");
+            giscusScript.setAttribute(
+                "data-category-id",
+                "DIC_kwDOQUnKGc4Cxvd5"
+            );
+            giscusScript.setAttribute("data-mapping", "pathname");
+            giscusScript.setAttribute("data-strict", "0");
+            giscusScript.setAttribute("data-reactions-enabled", "1");
+            giscusScript.setAttribute("data-emit-metadata", "0");
+            giscusScript.setAttribute("data-input-position", "bottom");
+            giscusScript.setAttribute("data-theme", "dark_high_contrast");
+            giscusScript.setAttribute("data-lang", "en");
+            giscusScript.setAttribute("crossorigin", "anonymous");
+            giscusScript.async = true;
 
-}
+            commentsDiv.appendChild(giscusScript);
+        }
 
-function goBack() {
-    document.getElementById("post-content").style.display = "none";
-    document.getElementById("post-list").style.display = "block";
-}
+        function goBack() {
+            document.getElementById("post-content").style.display = "none";
+            document.getElementById("post-list").style.display = "block";
 
-loadPosts();
-</script>
+            // Optional: scroll back to top of list
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
 
+        // Kick things off
+        loadPosts();
+    </script>
 </body>
 </html>
