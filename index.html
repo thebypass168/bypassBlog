@@ -232,8 +232,22 @@ async function loadPosts() {
             .then(r => r.text())
             .then(text => {
                 const lines = text.split("\n");
-                const title = lines[0].replace("#", "").trim();
-                const preview = lines[2] || "";
+                const metadata = {};
+lines.forEach(line => {
+    if (line.includes(":")) {
+        const [key, value] = line.split(":").map(s => s.trim());
+        metadata[key] = value;
+    }
+});
+
+const publishDate = metadata.publish ? new Date(metadata.publish) : new Date();
+const now = new Date();
+
+if (publishDate > now) return; // Hide future posts
+
+const title = lines[0].replace("#", "").trim();
+const preview = lines[2] || "";
+
 
                 const card = document.createElement("div");
                 card.className = "post-card";
