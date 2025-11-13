@@ -21,7 +21,7 @@
         overflow-x: hidden;
     }
 
-    /* ---------- NAVBAR ---------- */
+    /* NAVBAR */
     nav {
         position: sticky;
         top: 0;
@@ -45,9 +45,7 @@
         transition: 0.2s;
     }
 
-    nav a:hover {
-        color: #29d9d5;
-    }
+    nav a:hover { color: #29d9d5; }
 
     nav a.active::after {
         content: "";
@@ -61,7 +59,7 @@
         border-radius: 2px;
     }
 
-    /* ---------- MOTION GLOW BACKGROUND ---------- */
+    /* GLOW BACKGROUND */
     body::before {
         content: "";
         position: fixed;
@@ -82,7 +80,7 @@
         100% { transform: translate(0,0) rotate(0deg); }
     }
 
-    /* ---------- HEADER ---------- */
+    /* HEADER */
     header {
         padding: 45px 20px;
         text-align: center;
@@ -90,7 +88,6 @@
         font-weight: 900;
         color: #29d9d5;
         text-shadow: 0 0 12px #29d9d5;
-        letter-spacing: 1px;
     }
 
     .intro {
@@ -99,11 +96,11 @@
         text-align: center;
         max-width: 700px;
         margin: auto;
-        line-height: 1.5;
         opacity: 0.85;
+        line-height: 1.5;
     }
 
-    /* ---------- POST LIST ---------- */
+    /* POST LIST */
     .post-list {
         max-width: 850px;
         margin: 50px auto;
@@ -133,37 +130,12 @@
     }
 
     .post-card h2 {
-        margin: 0 0 8px 0;
         color: #29d9d5;
+        margin: 0 0 8px 0;
         font-size: 1.5rem;
-        position: relative;
-        padding-bottom: 6px;
     }
 
-    .post-card h2::after {
-        content: "";
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 70px;
-        height: 3px;
-        background: linear-gradient(90deg, #29d9d5, #f5c400, #ff3b30);
-        border-radius: 2px;
-        animation: streak 3s linear infinite;
-    }
-
-    @keyframes streak {
-        0% { background-position: 0%; }
-        100% { background-position: 200%; }
-    }
-
-    .post-card p {
-        margin: 0;
-        opacity: 0.78;
-        line-height: 1.45;
-    }
-
-    /* ---------- POST PAGE ---------- */
+    /* POST PAGE */
     #post-content {
         max-width: 850px;
         margin: 40px auto;
@@ -185,9 +157,8 @@
         background: #29d9d5;
         color: #000;
         border-radius: 6px;
-        text-decoration: none;
         font-weight: bold;
-        box-shadow: 0 0 8px #29d9d5;
+        text-decoration: none;
     }
 </style>
 </head>
@@ -205,23 +176,19 @@
 <header>The Bypass 168 Blog</header>
 
 <div class="intro">
-    Night-highway energy. Turquoise neon. Hazard yellow in the distance.  
-    This is your inside lane to updates, stories, progress, and sneak peeks as we approach reopening.
+    Night-highway energy. Turquoise neon. Hazard yellow in the distance.<br>
+    Updates, stories, progress, and sneak peeks as we approach reopening.
 </div>
 
-<!-- POST LIST -->
 <div class="post-list" id="post-list"></div>
 
-<!-- FULL POST PAGE -->
 <div id="post-content"></div>
 
 <footer>© The Bypass 168</footer>
 
 <script>
 async function loadPosts() {
-    const files = await fetch("posts/")
-        .then(r => r.text());
-
+    const files = await fetch("posts/").then(r => r.text());
     const matches = [...files.matchAll(/>([^<]+\.md)</g)];
     const posts = matches.map(m => m[1]);
 
@@ -233,30 +200,25 @@ async function loadPosts() {
             .then(text => {
                 const lines = text.split("\n");
                 const metadata = {};
-lines.forEach(line => {
-    if (line.includes(":")) {
-        const [key, value] = line.split(":").map(s => s.trim());
-        metadata[key] = value;
-    }
-});
 
-const publishDate = metadata.publish ? new Date(metadata.publish) : new Date();
-const now = new Date();
+                lines.forEach(line => {
+                    if (line.includes(":")) {
+                        const [key, value] = line.split(":").map(s => s.trim());
+                        metadata[key] = value;
+                    }
+                });
 
-if (publishDate > now) return; // Hide future posts
+                const publishDate = metadata.publish ? new Date(metadata.publish) : new Date();
+                if (publishDate > new Date()) return;
 
-const title = lines[0].replace("#", "").trim();
-const preview = lines[2] || "";
-
+                const title = lines[0].replace("#", "").trim();
+                const preview = lines[2] || "";
 
                 const card = document.createElement("div");
                 card.className = "post-card";
-
-                card.innerHTML = `
-                    <h2>${title}</h2>
-                    <p>${preview}</p>
-                `;
+                card.innerHTML = `<h2>${title}</h2><p>${preview}</p>`;
                 card.onclick = () => openPost(filename);
+
                 postList.appendChild(card);
             });
     });
@@ -264,41 +226,41 @@ const preview = lines[2] || "";
 
 async function openPost(filename) {
     document.getElementById("post-list").style.display = "none";
+
     const postContent = document.getElementById("post-content");
     postContent.style.display = "block";
 
     let md = await fetch(`posts/${filename}`).then(r => r.text());
-
     let html = md
         .replace(/^# (.*$)/gim, "<h1>$1</h1>")
         .replace(/\*\*(.*?)\*\*/gim, "<strong>$1</strong>")
         .replace(/\n/gim, "<br>");
 
     postContent.innerHTML = `
-    ${html}
-    <div id="comments"></div>
-    <br><br>
-    <a id="back-btn" href="#" onclick="goBack()">← Back</a>
-`;
+        ${html}
+        <div id="comments"></div>
+        <br><br>
+        <a id="back-btn" href="#" onclick="goBack()">← Back</a>
+    `;
 
-// Load Giscus
-c<script src="https://giscus.app/client.js"
-        data-repo="thebypass168/bypassBlog"
-        data-repo-id="R_kgDOQUnKGQ"
-        data-category="General"
-        data-category-id="DIC_kwDOQUnKGc4Cxvd5"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="dark_high_contrast"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
-
-
+    // Inject Giscus properly
+    document.getElementById("comments").innerHTML = `
+        <script src="https://giscus.app/client.js"
+            data-repo="thebypass168/bypassBlog"
+            data-repo-id="R_kgDOQUnKGQ"
+            data-category="General"
+            data-category-id="DIC_kwDOQUnKGc4Cxvd5"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="transparent_dark"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+        </script>
+    `;
 }
 
 function goBack() {
